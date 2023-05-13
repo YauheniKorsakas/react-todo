@@ -1,0 +1,49 @@
+@import '../../../../styles/variables.scss';
+
+.Round {
+  position: relative;
+  height: 30px;
+}
+
+.Round {
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $secondary-color-100;
+    border: 1px solid $secondary-color-500;
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+  }
+
+  label:after {
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    border: 2px solid $secondary-color-100;
+    border-top: none;
+    border-right: none;
+    height: 6px;
+    opacity: 0;
+    transform: rotate(-45deg);
+    width: 12px;
+    content: "";
+  }
+
+  input[type="checkbox"] {
+    visibility: hidden;
+  }
+  
+  input[type="checkbox"]:checked {
+    + label {
+      background-color: $success-color;
+      border-color: $success-color;
+
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+}

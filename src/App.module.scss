@@ -1,5 +1,8 @@
+@import './styles/variables.scss';
+
 body {
   margin: 0;
   overflow: hidden;
   max-height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
 }
