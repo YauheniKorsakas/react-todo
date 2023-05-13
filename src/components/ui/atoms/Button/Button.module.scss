@@ -1,0 +1,9 @@
+@import '../../../../styles//variables.scss';
+
+.Button {
+  font-size: 13px;
+  font-family: $font-family;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}

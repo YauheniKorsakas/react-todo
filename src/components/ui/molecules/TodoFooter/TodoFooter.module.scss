@@ -1,0 +1,31 @@
+@import '../../../../styles/variables.scss';
+
+$side-padding: 67px;
+
+.Footer {
+  height: 5vh;
+  font-size: 15px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  :first-child {
+    padding-left: $side-padding;
+  }
+
+  :last-child {
+    padding-right: $side-padding;
+  }
+
+  .ItemsLeft {
+    color: $secondary-color-300;
+  }
+
+  .Filters {
+    .FilterButton:hover {
+        font-weight: 800;
+    }
+  }
+}
