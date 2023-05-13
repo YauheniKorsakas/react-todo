@@ -4,7 +4,6 @@ const Todo = () => {
 
   return (
   <>
-  test
     <Header />
     <TodoContainer />
     <Footer />
