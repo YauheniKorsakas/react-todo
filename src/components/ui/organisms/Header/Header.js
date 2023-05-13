@@ -1,8 +1,7 @@
 import styles from './Header.module.scss';
-import { TodoTile } from '../../molecules';
 
 const Header = () => {
-  return (<header className={styles.Header}><TodoTile /></header>)
+  return (<header className={styles.Header}></header>)
 };
 
 export default Header;
