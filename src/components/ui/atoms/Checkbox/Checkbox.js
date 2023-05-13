@@ -4,7 +4,7 @@ const Checkbox = () => {
   return (
     <div className={styles.Round}>
       <input type="checkbox" id="checkbox" />
-      <label for="checkbox"></label>
+      <label htmlFor="checkbox"></label>
     </div>
   )
 };
