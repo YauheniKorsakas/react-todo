@@ -1,9 +1,7 @@
+import Todo from "./components/pages/Todo";
+
 function App() {
-  return (
-    <div className="App">
-      react-todo application
-    </div>
-  );
+  return (<Todo />);
 }
 
 export default App;
