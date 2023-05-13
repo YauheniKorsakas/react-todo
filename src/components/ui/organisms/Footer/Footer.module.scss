@@ -1,0 +1,10 @@
+@import '../../../../styles/variables.scss';
+
+.Footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: $secondary-color-500;
+  text-align: center;
+  height: 10vh;
+}
