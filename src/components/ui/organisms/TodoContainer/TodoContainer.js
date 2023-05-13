@@ -1,13 +1,12 @@
-import { TodoTile, TodoFooter, TodoList } from "../../molecules";
+import { TodoFooter, TodoHeader, TodoList } from "../../molecules";
 
 const TodoContainer = () => {
 
   return (<>
-    <TodoTile />
-    <br />
+    <TodoHeader />
     <TodoList />
     <TodoFooter />
-  </>)
+  </>);
 };
 
 export default TodoContainer;
