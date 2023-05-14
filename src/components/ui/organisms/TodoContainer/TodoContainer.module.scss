@@ -7,13 +7,23 @@
   left: 30vw;
 
   .Container {
-    >:first-child {
+    :first-child {
       border-top-left-radius: $container-border-radius;
       border-top-right-radius: $container-border-radius;
     }
     >:last-child {
       border-bottom-left-radius: $container-border-radius;
       border-bottom-right-radius: $container-border-radius;
+    }
+  }
+
+  .Header {
+    border-radius: $container-border-radius;
+  }
+
+  .TodoHeader {
+    :last-child {
+      border-radius: $container-border-radius;
     }
   }
 }

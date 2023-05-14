@@ -2,12 +2,13 @@ import { useState } from 'react';
 
 import styles from './TodoHeader.module.scss';
 import TodoTile from '../TodoTile/TodoTile';
+import classNames from 'classnames';
 
-const TodoHeader = () => {
+const TodoHeader = ({ className = '' }) => {
   const [todoTileValue, setTodoTileValue] = useState('');
 
   return (
-    <div className={styles.TodoHeader}>
+    <div className={classNames(styles.TodoHeader, className)}>
       <h1>TODO</h1>
       <TodoTile
         id={'todo-header-tile'}
