@@ -1,0 +1,9 @@
+@import '../../../../styles/variables.scss';
+
+.TodoContainer {
+  width: 40vw;
+  position: absolute;
+  top: 5%;
+  left: 30vw;
+  box-shadow: 0 10px 10px -5px $secondary-color-500;
+}
