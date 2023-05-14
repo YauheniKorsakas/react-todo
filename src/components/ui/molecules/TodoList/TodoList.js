@@ -8,7 +8,7 @@ const TodoList = ({ todos }) => {
   return (
     <>
     {todosExist && 
-      <div>
+      <>
         {todos.map(todo =>
           <>
             <TodoTile
@@ -18,7 +18,7 @@ const TodoList = ({ todos }) => {
                 value={todo.content} />
             <hr />
           </>)}
-      </div>
+      </>
     }
     {!todosExist && <h4 className={styles.NoContent}>There are no todos yet</h4>}
     </>

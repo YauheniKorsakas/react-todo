@@ -5,5 +5,15 @@
   position: absolute;
   top: 5%;
   left: 30vw;
-  box-shadow: 0 10px 10px -5px $secondary-color-500;
+
+  .Container {
+    >:first-child {
+      border-top-left-radius: $container-border-radius;
+      border-top-right-radius: $container-border-radius;
+    }
+    >:last-child {
+      border-bottom-left-radius: $container-border-radius;
+      border-bottom-right-radius: $container-border-radius;
+    }
+  }
 }

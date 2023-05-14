@@ -13,9 +13,11 @@ const TodoContainer = () => {
   return (
     <div className={styles.TodoContainer}>
       <TodoHeader />
-      <br></br>
-      <TodoList todos={data} />
-      <TodoFooter />
+      <br />
+      <div className={styles.Container}>
+        <TodoList todos={data} />
+        <TodoFooter />
+      </div>
     </div>);
 };
 
