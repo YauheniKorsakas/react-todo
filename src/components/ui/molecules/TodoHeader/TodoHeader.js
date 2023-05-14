@@ -10,6 +10,7 @@ const TodoHeader = () => {
     <div className={styles.TodoHeader}>
       <h1>TODO</h1>
       <TodoTile
+        id={'todo-header-tile'}
         value={todoTileValue}
         onChange={(e) => setTodoTileValue(e.target.value)} 
         placeholder={"Write your todo here..."} />

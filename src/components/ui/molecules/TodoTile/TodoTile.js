@@ -6,11 +6,11 @@ import styles from './TodoTile.module.scss';
 import { TextInput } from "../../atoms";
 import { Button } from './../../atoms';
 
-const TodoTile = ({className = '', value, ...props}) => {
+const TodoTile = ({className = '', id, value, ...props}) => {
 
   return (<>
-    <div className={classNames(styles.TodoTile, className)}>
-      <Checkbox className={styles.Checkbox} />
+    <div id={id} className={classNames(styles.TodoTile, className)}>
+      <Checkbox id={`${id}-checkbox`} className={styles.Checkbox} onClick={() => {alert('lol')}}/>
       <TextInput
         {...props}
         type='text'
