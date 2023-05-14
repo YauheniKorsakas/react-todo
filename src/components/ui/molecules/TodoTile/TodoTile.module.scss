@@ -9,6 +9,10 @@
 
   .Checkbox {
     width: 50px;
+
+    &.Hidden {
+      display: none;
+    }
   }
 
   .Input {
@@ -24,9 +28,15 @@
       
       &:disabled {
         background-color: inherit;
+        cursor: pointer;
       }
 
     }
+  }
+
+  .CrossedInput {
+    color: $secondary-color-200;
+    text-decoration: line-through;
   }
 
   .CloseButton {
@@ -43,6 +53,10 @@
       .CloseIcon {
         color: $secondary-color-700;
       }
+    }
+
+    &.Hidden {
+      display: none;
     }
   }
 }

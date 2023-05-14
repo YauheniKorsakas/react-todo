@@ -1,10 +1,14 @@
 import styles from './Checkbox.module.scss';
 import classNames from 'classnames';
 
-const Checkbox = ({className = '', id, ...props}) => {
+const Checkbox = ({className = '', id, onClick, disabled = false}) => {
   return (
     <div className={classNames(styles.Round, className)}>
-      <input type="checkbox" id={id} />
+      <input
+        disabled={disabled}
+        type="checkbox"
+        id={id}
+        onClick={onClick} />
       <label htmlFor={id}></label>
     </div>
   )
