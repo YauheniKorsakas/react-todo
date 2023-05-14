@@ -1,15 +1,16 @@
 @import '../../../../styles/variables.scss';
 
-$side-padding: 67px;
+$side-padding: 40px;
 
 .Footer {
-  height: 5vh;
+  height: 3vh;
   font-size: 15px;
   width: 100%;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: $secondary-color-100;
   
   :first-child {
     padding-left: $side-padding;

@@ -5,13 +5,7 @@
   display: flex;
   justify-content: flex-start;
   padding: 15px;
-  border: 1px solid $secondary-color-150;
-  border-radius: $container-border-radius;
   background-color: $secondary-color-100;
-
-  &:first-child {
-    width: 40px;
-  }
 
   .Checkbox {
     width: 50px;
@@ -22,20 +16,25 @@
       margin-left: 5px;
       border: none;
       overflow: hidden;
+      width: 100%;
   
       &:focus {
         outline: none;
+      }
+      
+      &:disabled {
+        background-color: inherit;
       }
 
     }
   }
 
   .CloseButton {
-    width: 100px;
+    width: auto;
     height: 30px;
 
     .CloseIcon {
-      width: 100px;
+      width: 30px;
       height: 30px;
       color: $secondary-color-200;
     }

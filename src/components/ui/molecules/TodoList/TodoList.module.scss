@@ -1,0 +1,17 @@
+@import '../../../../styles/variables.scss';
+
+.TodoTile {
+  display: block;
+}
+
+.NoContent {
+  color: $secondary-color-100;
+  text-align: center;
+}
+
+hr {
+  margin: 0;
+  border: 0;
+  height: 1px;
+  background-color: $secondary-color-200;
+}

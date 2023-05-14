@@ -11,7 +11,8 @@ const TodoHeader = () => {
       <h1>TODO</h1>
       <TodoTile
         value={todoTileValue}
-        onChange={(e) => setTodoTileValue(e.target.value)} />
+        onChange={(e) => setTodoTileValue(e.target.value)} 
+        placeholder={"Write your todo here..."} />
     </div>
   );
 };
