@@ -13,6 +13,7 @@ const TodoHeader = ({ className = '' }) => {
     if (e.key === 'Enter') {
       const newTodo = { content: todoTileValue};
       dispatch(addTodo(newTodo));
+      setTodoTileValue('');
     }
   }
   const onChange = (e) => setTodoTileValue(e.target.value);

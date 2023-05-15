@@ -20,7 +20,7 @@ const TodoTile = ({className = '', id, value, onAddTodo, onRemoveTodo, ...props}
         className={styles.Checkbox}
         checked
         disabled={checkboxDisabled}
-        onClick={() => {setChecked(!checked)}}/>
+        onClick={() => {setChecked(!checked)}} />
       <TextInput
         {...props}
         className={textInputClasses}
@@ -30,7 +30,7 @@ const TodoTile = ({className = '', id, value, onAddTodo, onRemoveTodo, ...props}
         spellCheck='false' />
       <Button
         className={closeButtonClasses}
-        title={<AiOutlineClose className={styles.CloseIcon}/>}
+        title={<AiOutlineClose className={styles.CloseIcon} />}
         onClick={onRemoveTodo}></Button>
     </div> 
   </>)
