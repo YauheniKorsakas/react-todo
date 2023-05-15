@@ -8,9 +8,10 @@ import { Button, TextInput } from './../../atoms';
 
 const TodoTile = ({className = '', id, value, onAddTodo, onRemoveTodo, ...props}) => {
   const [checked, setChecked] = useState(false);
+  const [initialValue] = useState(value);
   const textInputClasses = classNames(styles.Input, { [styles.CrossedInput]: checked });
-  const closeButtonClasses = classNames(styles.CloseButton, { [styles.Hidden]: !value });
-  const checkboxDisabled = !value ? true : false;
+  const closeButtonClasses = classNames(styles.CloseButton, { [styles.Hidden]: !initialValue });
+  const checkboxDisabled = !initialValue ? true : false;
 
   return (<>
     <div id={id} className={classNames(styles.TodoTile, className)}>
