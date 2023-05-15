@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { AiOutlineClose } from 'react-icons/ai';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import Checkbox from "../../atoms/Checkbox/Checkbox";
 import styles from './TodoTile.module.scss';
@@ -9,9 +9,9 @@ import { TextInput } from "../../atoms";
 
 const TodoTile = ({className = '', id, value, onAddTodo, ...props}) => {
   const [checked, setChecked] = useState(false);
-  const textInputClasses = useMemo(() => classNames(styles.Input, { [styles.CrossedInput]: checked }), [checked]);
-  const closeButtonClasses = useMemo(() => classNames(styles.CloseButton, { [styles.Hidden]: !value }), []);
-  const checkboxDisabled = useMemo(() => !value ? true : false, []);
+  const textInputClasses = classNames(styles.Input, { [styles.CrossedInput]: checked });
+  const closeButtonClasses = classNames(styles.CloseButton, { [styles.Hidden]: !value });
+  const checkboxDisabled = !value ? true : false;
 
   return (<>
     <div id={id} className={classNames(styles.TodoTile, className)}>
