@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400&display=swap');
 
-$primary-color-100: #4755bd;
-$primary-color-700: #800080;
+$primary-color-100: #7b84cc;
+$primary-color-700: #a12fa1;
 
 $secondary-color-100: #ffffff;
 $secondary-color-150: #e9eef0;
@@ -10,8 +10,7 @@ $secondary-color-300: #9baaaf;
 $secondary-color-500: #6b7a80;
 $secondary-color-700: #373d3f;
 
-$success-color: #2e913b;
-
+$success-color: $primary-color-100;
 $container-border-radius: 5px;
 
 $font-family: 'Josefin Sans', sans-serif;

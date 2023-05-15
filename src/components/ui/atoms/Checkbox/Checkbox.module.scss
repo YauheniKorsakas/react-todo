@@ -36,13 +36,32 @@
     visibility: hidden;
   }
   
-  input[type="checkbox"]:checked {
-    + label {
-      background-color: $success-color;
-      border-color: $success-color;
+  input[type="checkbox"] {
+    &[disabled] {
+      display: none;
+    }
 
-      &:after {
-        opacity: 1;
+    + label {
+      border-color: $secondary-color-150;
+
+      &:hover {
+        border-color: $success-color;
+      }
+    }
+
+    &[disabled] + label {
+      border-color: none;
+      visibility: hidden;
+    }
+
+    &:checked {
+      + label {
+        background-color: $success-color;
+        border-color: $success-color;
+  
+        &:after {
+          opacity: 1;
+        }
       }
     }
   }

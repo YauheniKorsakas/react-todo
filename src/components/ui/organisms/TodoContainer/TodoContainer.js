@@ -12,7 +12,7 @@ const TodoContainer = () => {
 
   return (
     <div className={styles.TodoContainer}>
-      <TodoHeader />
+      <TodoHeader className={styles.TodoHeader} />
       <br />
       <div className={styles.Container}>
         <TodoList todos={data} />
