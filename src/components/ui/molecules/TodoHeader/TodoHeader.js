@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { addTodo } from '../../../../store/todosSlice';
 import TodoTile from '../TodoTile/TodoTile';
 import styles from './TodoHeader.module.scss';
+import { addTodo } from '../../../../store/todosSlice';
 
 const TodoHeader = ({ className = '' }) => {
   const [todoTileValue, setTodoTileValue] = useState('');

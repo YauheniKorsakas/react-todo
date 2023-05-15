@@ -1,10 +1,17 @@
-import styles from './TodoList.module.scss';
+import { Fragment, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
 
 import TodoTile from '../TodoTile/TodoTile';
-import { Fragment } from 'react';
+import styles from './TodoList.module.scss';
+import { removeTodo } from '../../../../store/todosSlice';
 
 const TodoList = ({ todos }) => {
-  const todosExist = todos && todos.length > 0;
+  const todosExist = useMemo(() => todos && todos.length > 0, [todos]);
+  const dispatch = useDispatch();
+
+  const onRemoveTodo = (todoId) => {
+    dispatch(removeTodo(todoId));
+  };
   
   return (
     <div className={styles.TodoList}>
@@ -16,7 +23,8 @@ const TodoList = ({ todos }) => {
               id={`todo-list-tile-${todo.id}`}
               className={styles.TodoTile}
               disabled={true}
-              value={todo.content} />
+              value={todo.content}
+              onRemoveTodo={() => onRemoveTodo(todo.id)} />
             <hr />
           </Fragment>)}
       </>

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = [
   { id: 1, content: 'Check phone'},
   { id: 2, content: 'Verify credentials'},
+  { id: 3, content: 'Check email'},
 ];
 
 const todosSlice = createSlice({
@@ -10,22 +11,20 @@ const todosSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      if (action) {
-        const maxId = Math.max(...state.map(item => item.id))
+      if (action?.payload?.content) {
+        const maxId = state.length ? Math.max(...state.map(item => item.id)) : 1;
         action.payload.id = maxId + 1;
         state.push(action.payload);
       }
     },
     removeTodo: (state, action) => {
-      if (action) {
-        state = state.filter(item => item.id !== action.id);
-      }
+      const newState = state.filter(item => item.id !== action.payload);
+      return newState;
     }
   }
 });
 
-
-const selectAllTodos = (state) => state.todos;
+const selectAllTodos = (state) => state.todos.slice().reverse();
 
 const selectTotalCount = (state) => state.todos.length;
 
