@@ -1,10 +1,15 @@
+import { useSelector } from "react-redux";
+
 import styles from './TodoFooter.module.scss';
 import { Button } from '../../atoms';
+import { selectTotalCount } from "../../../../store/todosSlice";
 
-const TodoFooter = ({ itemsLeft = 0 }) => {
+const TodoFooter = () => {
+  const todosTotalCount = useSelector(selectTotalCount);
+
   return (
     <footer className={styles.Footer}>
-      <span className={styles.ItemsLeft}>{itemsLeft} items left</span>
+      <span className={styles.ItemsLeft}>{todosTotalCount} items left</span>
       <div className={styles.Filters}>
         <Button
           title='All'

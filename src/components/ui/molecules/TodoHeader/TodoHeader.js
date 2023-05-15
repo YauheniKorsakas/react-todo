@@ -1,11 +1,21 @@
+import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import styles from './TodoHeader.module.scss';
 import TodoTile from '../TodoTile/TodoTile';
-import classNames from 'classnames';
+import styles from './TodoHeader.module.scss';
+import { addTodo } from '../../../../store/todosSlice';
 
 const TodoHeader = ({ className = '' }) => {
   const [todoTileValue, setTodoTileValue] = useState('');
+  const dispatch = useDispatch();
+  const onAddTodo = (e) => {
+    if (e.key === 'Enter') {
+      const newTodo = { content: todoTileValue};
+      dispatch(addTodo(newTodo));
+    }
+  }
+  const onChange = (e) => setTodoTileValue(e.target.value);
 
   return (
     <div className={classNames(styles.TodoHeader, className)}>
@@ -13,7 +23,8 @@ const TodoHeader = ({ className = '' }) => {
       <TodoTile
         id={'todo-header-tile'}
         value={todoTileValue}
-        onChange={(e) => setTodoTileValue(e.target.value)} 
+        onAddTodo={onAddTodo}
+        onChange={onChange}
         placeholder={"Write your todo here..."} />
     </div>
   );

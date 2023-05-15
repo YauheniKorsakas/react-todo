@@ -4,10 +4,9 @@ import { useState } from 'react';
 
 import Checkbox from "../../atoms/Checkbox/Checkbox";
 import styles from './TodoTile.module.scss';
-import { Button } from './../../atoms';
-import { TextInput } from "../../atoms";
+import { Button, TextInput } from './../../atoms';
 
-const TodoTile = ({className = '', id, value, ...props}) => {
+const TodoTile = ({className = '', id, value, onAddTodo, onRemoveTodo, ...props}) => {
   const [checked, setChecked] = useState(false);
   const textInputClasses = classNames(styles.Input, { [styles.CrossedInput]: checked });
   const closeButtonClasses = classNames(styles.CloseButton, { [styles.Hidden]: !value });
@@ -18,18 +17,20 @@ const TodoTile = ({className = '', id, value, ...props}) => {
       <Checkbox
         id={`${id}-checkbox`}
         className={styles.Checkbox}
-        checked={checked}
+        checked
         disabled={checkboxDisabled}
         onClick={() => {setChecked(!checked)}}/>
       <TextInput
         {...props}
         className={textInputClasses}
+        onKeyDown={onAddTodo}
         value={value}
         type='text'
         spellCheck='false' />
       <Button
         className={closeButtonClasses}
-        title={<AiOutlineClose className={styles.CloseIcon} />}></Button>
+        title={<AiOutlineClose className={styles.CloseIcon}/>}
+        onClick={onRemoveTodo}></Button>
     </div> 
   </>)
 };
