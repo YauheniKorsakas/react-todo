@@ -1,10 +1,10 @@
 import styles from './TodoFooter.module.scss';
 import { Button } from '../../atoms';
 
-const TodoFooter = ({ itemsLeft = 0 }) => {
+const TodoFooter = ({ totalCount = 0 }) => {
   return (
     <footer className={styles.Footer}>
-      <span className={styles.ItemsLeft}>{itemsLeft} items left</span>
+      <span className={styles.ItemsLeft}>{totalCount} items left</span>
       <div className={styles.Filters}>
         <Button
           title='All'

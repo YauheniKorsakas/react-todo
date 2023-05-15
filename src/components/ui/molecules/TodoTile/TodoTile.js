@@ -7,7 +7,7 @@ import styles from './TodoTile.module.scss';
 import { Button } from './../../atoms';
 import { TextInput } from "../../atoms";
 
-const TodoTile = ({className = '', id, value, ...props}) => {
+const TodoTile = ({className = '', id, value, onAddTodo, ...props}) => {
   const [checked, setChecked] = useState(false);
   const textInputClasses = useMemo(() => classNames(styles.Input, { [styles.CrossedInput]: checked }), [checked]);
   const closeButtonClasses = useMemo(() => classNames(styles.CloseButton, { [styles.Hidden]: !value }), []);
@@ -18,12 +18,13 @@ const TodoTile = ({className = '', id, value, ...props}) => {
       <Checkbox
         id={`${id}-checkbox`}
         className={styles.Checkbox}
-        checked={checked}
+        checked
         disabled={checkboxDisabled}
         onClick={() => {setChecked(!checked)}}/>
       <TextInput
         {...props}
         className={textInputClasses}
+        onKeyDown={onAddTodo}
         value={value}
         type='text'
         spellCheck='false' />
