@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import TodoTile from '../TodoTile/TodoTile';
 import styles from './TodoList.module.scss';
-import { removeTodo } from '../../../../store/todosSlice';
+import { removeTodo, toggleTodo } from '../../../../store/todosSlice';
 
 const TodoList = ({ todos }) => {
   const todosExist = useMemo(() => todos && todos.length > 0, [todos]);
@@ -12,6 +12,10 @@ const TodoList = ({ todos }) => {
   const onRemoveTodo = (todoId) => {
     dispatch(removeTodo(todoId));
   };
+  
+  const onToggleTodo = (todoId) => {
+    dispatch(toggleTodo(todoId));
+  }
   
   return (
     <div className={styles.TodoList}>
@@ -24,6 +28,8 @@ const TodoList = ({ todos }) => {
               className={styles.TodoTile}
               disabled={true}
               value={todo.content}
+              checked={todo.isCompleted}
+              onToggleTodo={() => onToggleTodo(todo.id)}
               onRemoveTodo={() => onRemoveTodo(todo.id)} />
             <hr />
           </Fragment>)}
