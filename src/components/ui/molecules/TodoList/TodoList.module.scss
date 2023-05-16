@@ -1,5 +1,10 @@
 @import '../../../../styles/variables.scss';
 
+.TodoList {
+  max-height: 50vh;
+  overflow-x: hidden;
+}
+
 .NoContent {
   color: $secondary-color-100;
   text-align: center;
