@@ -4,7 +4,7 @@ import Filters from '../constants/Filters';
 const initialState = {
   filter: Filters.All,
   todoItems: [
-    { id: 1, content: 'Check phone', isCompleted: false },
+    { id: 1, content: 'Check phone', isCompleted: true },
     { id: 2, content: 'Verify credentials', isCompleted: false },
     { id: 3, content: 'Check email', isCompleted: false },
   ]
