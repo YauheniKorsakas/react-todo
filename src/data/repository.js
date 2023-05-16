@@ -6,7 +6,7 @@ const getRepository = (storageKey) => ({
   load: () => {
     const serializedData = localStorage.getItem(storageKey);
 
-    return serializedData ? JSON.parse(serializedData) : {}
+    return serializedData ? JSON.parse(serializedData) : null;
   }
 });
 

@@ -1,14 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Filters from '../constants/Filters';
 
-const initialState = {
-  filter: Filters.All,
-  todoItems: [
-    { id: 1, content: 'Check phone', isCompleted: true },
-    { id: 2, content: 'Verify credentials', isCompleted: false },
-    { id: 3, content: 'Check email', isCompleted: false },
-  ]
-}
+import Filters from '../constants/Filters';
+import getRepository from '../data/repository';
+import TodoKey from '../constants/LocalStorageKeys';
+
+const repository = getRepository(TodoKey);
+const loadedTodos = repository.load(TodoKey)?.todos;
+const initialState = loadedTodos ||
+  {
+    filter: Filters.All,
+    todoItems: [
+      { id: 1, content: 'Check phone', isCompleted: true },
+      { id: 2, content: 'Verify credentials', isCompleted: false },
+      { id: 3, content: 'Check email', isCompleted: false },
+    ]
+  }
 
 const todosSlice = createSlice({
   name: 'todos',
