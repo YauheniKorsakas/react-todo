@@ -1,11 +1,13 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from './TodoFooter.module.scss';
 import { Button } from '../../atoms';
-import { selectTotalCount } from "../../../../store/todosSlice";
+import { clearCompletedTodos, selectTotalCount } from "../../../../store/todosSlice";
 
 const TodoFooter = () => {
   const todosTotalCount = useSelector(selectTotalCount);
+  const dispatch = useDispatch();
+  const onClearCompleted = () => dispatch(clearCompletedTodos());
 
   return (
     <footer className={styles.Footer}>
@@ -24,7 +26,7 @@ const TodoFooter = () => {
           className={styles.FilterButton}
           onClick={() => {alert('Completed')}} />
       </div>
-      <Button title='Clear Completed' />
+      <Button title='Clear Completed' onClick={onClearCompleted}/>
     </footer>
   );
 };
