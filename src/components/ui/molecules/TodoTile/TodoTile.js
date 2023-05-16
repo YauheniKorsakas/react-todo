@@ -17,9 +17,9 @@ const TodoTile = ({className = '', id, value, onAddTodo, onRemoveTodo, onToggleT
       <Checkbox
         id={`${id}-checkbox`}
         className={styles.Checkbox}
-        checked
+        checked={checked}
         disabled={checkboxDisabled}
-        onClick={onToggleTodo} />
+        onChange={onToggleTodo} />
       <TextInput
         {...props}
         className={textInputClasses}
