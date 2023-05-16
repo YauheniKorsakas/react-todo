@@ -12,7 +12,7 @@ const initialState = loadedTodos ||
     todoItems: [
       { id: 1, content: 'Check phone', isCompleted: true },
       { id: 2, content: 'Verify credentials', isCompleted: false },
-      { id: 3, content: 'Check email', isCompleted: false },
+      { id: 3, content: 'Check email', isCompleted: false }
     ]
   }
 
@@ -42,20 +42,28 @@ const todosSlice = createSlice({
       }
     },
     changeFilter: (state, action) => {
-      state.filter = action.payload
+      if (Object.values(Filters).some(item => item === action.payload)) {
+        state.filter = action.payload
+      }
     }
   }
 });
 
-const selectTotalCount = (state) => state.todos.todoItems.length;
+const predicatesForTodoFilters = {
+  [Filters.All]: item => item,
+  [Filters.Active]: item => !item.isCompleted,
+  [Filters.Completed]: item => item.isCompleted
+};
+const selectTodosCountByFilter = (state) => {
+  const filter = state.todos.filter;
+  const predicate = predicatesForTodoFilters[filter];
+
+  return state.todos.todoItems.filter(predicate).length;
+}
 const selectCurrentTodosFilter = (state) => state.todos.filter;
 const selectTodosByFilter = (state) => {
   const filter = state.todos.filter;
-  const predicate = {
-    [Filters.All]: item => item,
-    [Filters.Active]: item => !item.isCompleted,
-    [Filters.Completed]: item => item.isCompleted
-  }[filter];
+  const predicate = predicatesForTodoFilters[filter];
 
   return state.todos.todoItems.filter(predicate);
 };
@@ -63,7 +71,7 @@ const selectTodosByFilter = (state) => {
 export {
   selectCurrentTodosFilter,
   selectTodosByFilter,
-  selectTotalCount
+  selectTodosCountByFilter
 };
 export const {
   addTodo,

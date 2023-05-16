@@ -7,3 +7,16 @@ body {
   font-family: $font-family;
   background-color: $secondary-color-150;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  opacity: 1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $secondary-color-300;
+  border-radius: 10px;
+}
