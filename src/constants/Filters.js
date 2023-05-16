@@ -1,3 +1,3 @@
-const Statuses = { All: 'All', Active: 'Active', Completed: 'Completed' }
+const Filters = { All: 'All', Active: 'Active', Completed: 'Completed' }
 
-export default Statuses;
+export default Filters;

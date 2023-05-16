@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Statuses from '../constants/Filters';
+import Filters from '../constants/Filters';
 
 const initialState = {
-  filter: Statuses.All,
+  filter: Filters.All,
   todoItems: [
     { id: 1, content: 'Check phone', isCompleted: false },
     { id: 2, content: 'Verify credentials', isCompleted: false },
@@ -34,27 +34,36 @@ const todosSlice = createSlice({
       if (todoToUpdate) {
         todoToUpdate.isCompleted = !todoToUpdate.isCompleted;
       }
+    },
+    changeFilter: (state, action) => {
+      state.filter = action.payload
     }
   }
 });
 
-const selectAllTodos = (state) => state.todos.todoItems.slice();
-
-const selectCompletedTodos = (state) => state.todos.todoItems.filter(item => item.isCompleted);
-
-const selectNotCompletedTodos = (state) => state.todos.todoItems.filter(item => !item.isCompleted);
-
 const selectTotalCount = (state) => state.todos.todoItems.length;
 
+const selectCurrentTodosFilter = (state) => state.todos.filter;
+
+const selectTodosByFilter = (state) => {
+  const filter = state.todos.filter;
+  const predicate = {
+    [Filters.All]: item => item,
+    [Filters.Active]: item => !item.isCompleted,
+    [Filters.Completed]: item => item.isCompleted
+  }[filter];
+
+  return state.todos.todoItems.filter(predicate);
+};
 
 export {
-  selectAllTodos,
-  selectTotalCount,
-  selectCompletedTodos,
-  selectNotCompletedTodos
+  selectCurrentTodosFilter,
+  selectTodosByFilter,
+  selectTotalCount
 };
 export const {
   addTodo,
+  changeFilter,
   clearCompletedTodos,
   toggleTodo,
   removeTodo

@@ -25,8 +25,14 @@ $side-padding: 30px;
   }
 
   .Filters {
-    .FilterButton:hover {
+    .FilterButton {
+      &:hover {
         font-weight: 800;
+      }
+
+      &.Selected {
+        color: $primary-color-100;
+      }
     }
   }
 }

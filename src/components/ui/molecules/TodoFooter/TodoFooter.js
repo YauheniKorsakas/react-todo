@@ -1,13 +1,22 @@
+import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from './TodoFooter.module.scss';
+import Filters from "../../../../constants/Filters";
 import { Button } from '../../atoms';
-import { clearCompletedTodos, selectTotalCount } from "../../../../store/todosSlice";
+import {
+  changeFilter,
+  clearCompletedTodos,
+  selectCurrentTodosFilter,
+  selectTotalCount
+} from "../../../../store/todosSlice";
 
 const TodoFooter = () => {
   const todosTotalCount = useSelector(selectTotalCount);
+  const currentTodosFilter = useSelector(selectCurrentTodosFilter)
   const dispatch = useDispatch();
   const onClearCompleted = () => dispatch(clearCompletedTodos());
+  const onChangeFilter = (filter) => dispatch(changeFilter(filter));
 
   return (
     <footer className={styles.Footer}>
@@ -15,16 +24,23 @@ const TodoFooter = () => {
       <div className={styles.Filters}>
         <Button
           title='All'
-          className={styles.FilterButton}
-          onClick={() => {alert('All')}} />
+          className={
+            classNames(
+              styles.FilterButton,
+              { [styles.Selected]: currentTodosFilter === Filters.All })}
+          onClick={() => onChangeFilter(Filters.All)} />
         <Button
           title='Active'
-          className={styles.FilterButton}
-          onClick={() => {alert('Active')}} />
+          className={classNames(
+            styles.FilterButton,
+            { [styles.Selected]: currentTodosFilter === Filters.Active })}
+          onClick={() => onChangeFilter(Filters.Active)} />
         <Button
           title='Completed'
-          className={styles.FilterButton}
-          onClick={() => {alert('Completed')}} />
+          className={classNames(
+            styles.FilterButton,
+            { [styles.Selected]: currentTodosFilter === Filters.Completed })}
+          onClick={() => onChangeFilter(Filters.Completed)} />
       </div>
       <Button title='Clear Completed' onClick={onClearCompleted}/>
     </footer>
