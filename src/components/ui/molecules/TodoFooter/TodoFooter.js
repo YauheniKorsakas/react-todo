@@ -8,11 +8,11 @@ import {
   changeFilter,
   clearCompletedTodos,
   selectCurrentTodosFilter,
-  selectTotalCount
+  selectTodosCountByFilter
 } from "../../../../store/todosSlice";
 
 const TodoFooter = () => {
-  const todosTotalCount = useSelector(selectTotalCount);
+  const todosTotalCount = useSelector(selectTodosCountByFilter);
   const currentTodosFilter = useSelector(selectCurrentTodosFilter)
   const dispatch = useDispatch();
   const onClearCompleted = () => dispatch(clearCompletedTodos());
