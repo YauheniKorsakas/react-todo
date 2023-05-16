@@ -42,9 +42,7 @@ const todosSlice = createSlice({
 });
 
 const selectTotalCount = (state) => state.todos.todoItems.length;
-
 const selectCurrentTodosFilter = (state) => state.todos.filter;
-
 const selectTodosByFilter = (state) => {
   const filter = state.todos.filter;
   const predicate = {
