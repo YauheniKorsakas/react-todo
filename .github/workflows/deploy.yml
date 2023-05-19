@@ -26,6 +26,8 @@ jobs:
         run: npm run build
         env:
           PUBLIC_URL: /react-todo
+      - name: run tests
+        run: npm run test
       - name: upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
