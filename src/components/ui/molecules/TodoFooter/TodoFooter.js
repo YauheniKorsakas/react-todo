@@ -13,7 +13,7 @@ import {
 
 const TodoFooter = () => {
   const todosTotalCount = useSelector(selectTodosCountByFilter);
-  const currentTodosFilter = useSelector(selectCurrentTodosFilter)
+  const currentTodosFilter = useSelector(selectCurrentTodosFilter);
   const dispatch = useDispatch();
   const onClearCompleted = () => dispatch(clearCompletedTodos());
   const onChangeFilter = (filter) => dispatch(changeFilter(filter));
@@ -23,20 +23,19 @@ const TodoFooter = () => {
       <span className={styles.ItemsLeft}>{todosTotalCount} items left</span>
       <div className={styles.Filters}>
         <Button
-          title='All'
-          className={
-            classNames(
+          title={Filters.All}
+          className={classNames(
               styles.FilterButton,
               { [styles.Selected]: currentTodosFilter === Filters.All })}
           onClick={() => onChangeFilter(Filters.All)} />
         <Button
-          title='Active'
+          title={Filters.Active}
           className={classNames(
             styles.FilterButton,
             { [styles.Selected]: currentTodosFilter === Filters.Active })}
           onClick={() => onChangeFilter(Filters.Active)} />
         <Button
-          title='Completed'
+          title={Filters.Completed}
           className={classNames(
             styles.FilterButton,
             { [styles.Selected]: currentTodosFilter === Filters.Completed })}

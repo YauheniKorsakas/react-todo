@@ -8,7 +8,8 @@ const repository = getRepository(TodoKey);
 const store = configureStore({
   reducer: {
     todos: todosReducer
-  }
+  },
+  preloadedState: { }
 });
 
 store.subscribe(() => repository.save(store.getState()));
