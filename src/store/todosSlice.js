@@ -23,7 +23,7 @@ const todosSlice = createSlice({
     addTodo: (state, action) => {
       if (action?.payload?.content) {
         const todos = state.todoItems;
-        const maxId = todos.length ? Math.max(...todos.map(item => item.id)) : 1;
+        const maxId = todos.length ? Math.max(...todos.map(item => item.id)) : 0;
         action.payload.id = maxId + 1;
         todos.unshift({ ...action.payload, isCompleted: false });
       }

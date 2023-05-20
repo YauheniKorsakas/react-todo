@@ -1,24 +1,23 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React from "react";
+import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import { render } from '@testing-library/react';
+import { render } from "@testing-library/react";
 
-import todosReducer from '../store/todosSlice';
+import todosReducer from "../store/todosSlice";
 
 export function renderWithProviders(
   ui,
-  {
-    preloadedState = { },
-    store = configureStore({
-      reducer: {
-        todos: todosReducer
-      }, preloadedState }),
-    ...renderOptions
-  } = {}
+  { preloadedState = {}, ...renderOptions } = {}
 ) {
-   const Wrapper = ({ children }) => {
-    return <Provider store={store}>{children}</Provider>
-  }
+  const store = configureStore({
+    reducer: {
+      todos: todosReducer,
+    },
+    preloadedState,
+  });
+  const Wrapper = ({ children }) => {
+    return <Provider store={store}>{children}</Provider>;
+  };
 
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }

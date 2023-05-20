@@ -19,15 +19,15 @@ const TodoHeader = ({ className = '' }) => {
   const onChange = (e) => setTodoTileValue(e.target.value);
 
   return (
-    <div className={classNames(styles.TodoHeader, className)}>
-      <h1>TODO</h1>
+    <header className={classNames(styles.TodoHeader, className)}>
+      <h1>Todo</h1>
       <TodoTile
         id={'todo-header-tile'}
         value={todoTileValue}
         onAddTodo={onAddTodo}
         onChange={onChange}
         placeholder={"Write your todo here..."} />
-    </div>
+    </header>
   );
 };
 

@@ -21,7 +21,7 @@ describe('TodoFooter:', () => {
     });
   };
 
-  test('should render successfuly', () => {
+  test('should render successfully', () => {
     renderFooter();
     const footer = screen.getByRole('contentinfo');
 
