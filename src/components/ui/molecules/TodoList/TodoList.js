@@ -18,25 +18,25 @@ const TodoList = ({ todos }) => {
   }
   
   return (
-    <div className={styles.TodoList}>
-    {todosExist &&
-      <>
-        {todos.map(todo =>
-          <Fragment key={`todo-list-tile-container-${todo.id}`}>
-            <TodoTile
-              id={`todo-list-tile-${todo.id}`}
-              className={styles.TodoTile}
-              disabled={true}
-              value={todo.content}
-              checked={todo.isCompleted}
-              onToggleTodo={() => onToggleTodo(todo.id)}
-              onRemoveTodo={() => onRemoveTodo(todo.id)} />
-            <hr />
-          </Fragment>)}
-      </>
-    }
-    {!todosExist && <h4 className={styles.NoContent}>There are no todos yet</h4>}
-    </div>
+    <section className={styles.TodoList}>
+      {todosExist &&
+        <>
+          {todos.map(todo =>
+            <Fragment key={`todo-list-tile-container-${todo.id}`}>
+              <TodoTile
+                id={`todo-list-tile-${todo.id}`}
+                className={styles.TodoTile}
+                disabled={true}
+                value={todo.content}
+                checked={todo.isCompleted}
+                onToggleTodo={() => onToggleTodo(todo.id)}
+                onRemoveTodo={() => onRemoveTodo(todo.id)} />
+              <hr />
+            </Fragment>)}
+        </>
+      }
+      {!todosExist && <h4 className={styles.NoContent}>There are no todos yet</h4>}
+    </section>
   );
 };
 
