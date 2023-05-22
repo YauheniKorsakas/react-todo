@@ -1,5 +1,6 @@
-import styles from './Checkbox.module.scss';
 import classNames from 'classnames';
+
+import styles from './Checkbox.module.scss';
 
 const Checkbox = ({className = '', id, onChange, disabled = false, checked = false}) => {
   return (
