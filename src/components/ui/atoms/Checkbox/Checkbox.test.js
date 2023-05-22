@@ -4,11 +4,17 @@ import { queryByAttribute, render, screen } from "@testing-library/react";
 import Checkbox from "./Checkbox";
 
 describe('Checkbox:', () => {
+  let checkboxChecked = false;
   const id = 'checkbox-id';
   const onChangeMock = jest.fn();
 
+  beforeEach(() => {
+    onChangeMock.mockImplementation(() => {checkboxChecked = !checkboxChecked});
+  });
+
   afterEach(() => {
     onChangeMock.mockClear();
+    checkboxChecked = false;
   });
 
   test('should render with correct id', () => {
@@ -46,12 +52,14 @@ describe('Checkbox:', () => {
   });
 
   test('should call callback when input value changes', () => {
-    render(<Checkbox onChange={onChangeMock} />);
+    const {rerender } = render(<Checkbox checked={checkboxChecked} onChange={onChangeMock} />);
     const checkbox = screen.getByRole('checkbox');
 
     userEvent.click(checkbox);
+    rerender(<Checkbox checked={checkboxChecked} onChange={onChangeMock} />);
 
     expect(checkbox).toBeInTheDocument();
     expect(onChangeMock).toHaveBeenCalledTimes(1);
+    expect(checkbox).toBeChecked();
   });
 });
