@@ -7,14 +7,14 @@ import TodoKey from '../constants/LocalStorageKeys';
 const repository = getRepository(TodoKey);
 const loadedTodos = repository.load(TodoKey)?.todos;
 const initialState = loadedTodos ||
-  {
-    filter: Filters.All,
-    todoItems: [
-      { id: 1, content: 'Check phone', isCompleted: true },
-      { id: 2, content: 'Verify credentials', isCompleted: false },
-      { id: 3, content: 'Check email', isCompleted: false }
-    ]
-  }
+{
+  filter: Filters.All,
+  todoItems: [
+    { id: 1, content: 'Check phone', isCompleted: true },
+    { id: 2, content: 'Verify credentials', isCompleted: false },
+    { id: 3, content: 'Check email', isCompleted: false }
+  ]
+}
 
 const todosSlice = createSlice({
   name: 'todos',
@@ -44,6 +44,13 @@ const todosSlice = createSlice({
     changeFilter: (state, action) => {
       if (Object.values(Filters).some(item => item === action.payload)) {
         state.filter = action.payload
+      }
+    },
+    reorderTodos: (state, { payload }) => {
+      if (payload.destination) {
+        const items = Array.from(state.todoItems);
+        const [reorderedItem] = items.splice(payload.source.index, 1);
+        state.todoItems = items.splice(payload.destination.index, 0, reorderedItem);
       }
     }
   }
@@ -78,6 +85,7 @@ export const {
   changeFilter,
   clearCompletedTodos,
   toggleTodo,
-  removeTodo
+  removeTodo,
+  reorderTodos
 } = todosSlice.actions;
 export default todosSlice.reducer;
