@@ -52,7 +52,7 @@ describe('Checkbox:', () => {
   });
 
   test('should call callback when input value changes', () => {
-    const {rerender } = render(<Checkbox checked={checkboxChecked} onChange={onChangeMock} />);
+    const { rerender } = render(<Checkbox checked={checkboxChecked} onChange={onChangeMock} />);
     const checkbox = screen.getByRole('checkbox');
 
     userEvent.click(checkbox);
