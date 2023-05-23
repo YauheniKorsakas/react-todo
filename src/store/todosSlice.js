@@ -28,29 +28,30 @@ const todosSlice = createSlice({
         todos.unshift({ ...action.payload, isCompleted: false });
       }
     },
-    removeTodo: (state, action) => {
-      state.todoItems = state.todoItems.filter(item => item.id !== action.payload);
+    removeTodo: (state, { payload }) => {
+      state.todoItems = state.todoItems.filter(item => item.id !== payload);
     },
     clearCompletedTodos: (state) => {
       state.todoItems = state.todoItems.filter(item => item.isCompleted === false);
     },
-    toggleTodo: (state, action) => {
-      const todoToUpdate = state.todoItems.find(item => item.id === action.payload);
+    toggleTodo: (state, { payload }) => {
+      const todoToUpdate = state.todoItems.find(item => item.id === payload);
 
       if (todoToUpdate) {
         todoToUpdate.isCompleted = !todoToUpdate.isCompleted;
       }
     },
-    changeFilter: (state, action) => {
-      if (Object.values(Filters).some(item => item === action.payload)) {
-        state.filter = action.payload
+    changeFilter: (state, {payload}) => {
+      if (Object.values(Filters).some(item => item === payload)) {
+        state.filter = payload
       }
     },
     reorderTodos: (state, { payload }) => {
       if (payload.destination) {
         const items = Array.from(state.todoItems);
-        const [reorderedItem] = items.splice(payload.source.index, 1);
-        state.todoItems = items.splice(payload.destination.index, 0, reorderedItem);
+        const reorderedItem = items.splice(payload.source.index, 1)[0];
+        items.splice(payload.destination.index, 0, reorderedItem);
+        state.todoItems = items;
       }
     }
   }
