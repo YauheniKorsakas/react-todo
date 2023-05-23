@@ -37,7 +37,7 @@ describe('repository:', () => {
 
     test('load method should return parsed object from localStorage by key', () => {
       const serializedData = JSON.stringify(data);
-      mockLocalStorage.getItem.mockImplementation((key) => serializedData);
+      mockLocalStorage.getItem.mockImplementation(() => serializedData);
 
       const result = repository.load();
 

@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { screen, waitFor } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import { renderWithProviders } from "../../../../utils/test-utils";
 import TodoList from "./TodoList";
