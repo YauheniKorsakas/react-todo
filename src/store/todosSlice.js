@@ -7,14 +7,14 @@ import TodoKey from '../constants/LocalStorageKeys';
 const repository = getRepository(TodoKey);
 const loadedTodos = repository.load(TodoKey)?.todos;
 const initialState = loadedTodos ||
-  {
-    filter: Filters.All,
-    todoItems: [
-      { id: 1, content: 'Check phone', isCompleted: true },
-      { id: 2, content: 'Verify credentials', isCompleted: false },
-      { id: 3, content: 'Check email', isCompleted: false }
-    ]
-  }
+{
+  filter: Filters.All,
+  todoItems: [
+    { id: 1, content: 'Check phone', isCompleted: true },
+    { id: 2, content: 'Verify credentials', isCompleted: false },
+    { id: 3, content: 'Check email', isCompleted: false }
+  ]
+}
 
 const todosSlice = createSlice({
   name: 'todos',
@@ -28,23 +28,40 @@ const todosSlice = createSlice({
         todos.unshift({ ...action.payload, isCompleted: false });
       }
     },
-    removeTodo: (state, action) => {
-      state.todoItems = state.todoItems.filter(item => item.id !== action.payload);
+    removeTodo: (state, { payload }) => {
+      state.todoItems = state.todoItems.filter(item => item.id !== payload);
     },
     clearCompletedTodos: (state) => {
       state.todoItems = state.todoItems.filter(item => item.isCompleted === false);
     },
-    toggleTodo: (state, action) => {
-      const todoToUpdate = state.todoItems.find(item => item.id === action.payload);
+    toggleTodo: (state, { payload }) => {
+      const todoToUpdate = state.todoItems.find(item => item.id === payload);
 
       if (todoToUpdate) {
         todoToUpdate.isCompleted = !todoToUpdate.isCompleted;
       }
     },
-    changeFilter: (state, action) => {
-      if (Object.values(Filters).some(item => item === action.payload)) {
-        state.filter = action.payload
+    changeFilter: (state, {payload}) => {
+      if (Object.values(Filters).some(item => item === payload)) {
+        state.filter = payload
       }
+    },
+    reorderTodos: (state, { payload }) => {
+      let { dragIndex, dropIndex, todos } = payload;
+
+      if (state.filter !== Filters.All) {
+        dragIndex = todos.findIndex(
+          item => item.id === state.todoItems[dragIndex].id
+        );
+        dropIndex = todos.findIndex(
+          item => item.id === state.todoItems[dropIndex].id
+        );
+      }
+
+      const items = [...state.todoItems]
+      const reorderedItem = items.splice(dragIndex, 1)[0];
+      items.splice(dropIndex, 0, reorderedItem);
+      state.todoItems = items;
     }
   }
 });
@@ -78,6 +95,7 @@ export const {
   changeFilter,
   clearCompletedTodos,
   toggleTodo,
-  removeTodo
+  removeTodo,
+  reorderTodos
 } = todosSlice.actions;
 export default todosSlice.reducer;

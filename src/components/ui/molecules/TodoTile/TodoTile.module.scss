@@ -6,6 +6,8 @@
   justify-content: flex-start;
   padding: 15px;
   background-color: $secondary-color-100;
+  border: 1px solid $secondary-color-150;
+  border-radius: 5px;
 
   .Checkbox {
     width: 50px;
@@ -28,7 +30,6 @@
       
       &:disabled {
         background-color: inherit;
-        cursor: pointer;
       }
 
     }
