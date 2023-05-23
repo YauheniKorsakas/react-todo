@@ -22,6 +22,8 @@ jobs:
           node-version: 18.x
       - name: install dependencies
         run: npm ci
+      - name: run linter
+        run: npx eslint . --ext .js,.jsx
       - name: build app
         run: npm run build
         env:
