@@ -47,12 +47,21 @@ const todosSlice = createSlice({
       }
     },
     reorderTodos: (state, { payload }) => {
-      if (payload.destination) {
-        const items = Array.from(state.todoItems);
-        const reorderedItem = items.splice(payload.source.index, 1)[0];
-        items.splice(payload.destination.index, 0, reorderedItem);
-        state.todoItems = items;
+      let { dragIndex, dropIndex, todos } = payload;
+
+      if (state.filter !== Filters.All) {
+        dragIndex = todos.findIndex(
+          item => item.id === state.todoItems[dragIndex].id
+        );
+        dropIndex = todos.findIndex(
+          item => item.id === state.todoItems[dropIndex].id
+        );
       }
+
+      const items = [...state.todoItems]
+      const reorderedItem = items.splice(dragIndex, 1)[0];
+      items.splice(dropIndex, 0, reorderedItem);
+      state.todoItems = items;
     }
   }
 });

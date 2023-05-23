@@ -19,7 +19,11 @@ const TodoList = ({ todos }) => {
   }
 
   const onDragEnd = (dndResult) => {
-    dispatch(reorderTodos(dndResult));
+    dispatch(reorderTodos({
+      dragIndex: dndResult.source.index,
+      dropIndex: dndResult.destination.index,
+      todos: todos
+    }));
   };
   
   return (
