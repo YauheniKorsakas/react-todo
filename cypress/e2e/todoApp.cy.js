@@ -19,7 +19,7 @@ describe('todo app page', () => {
   it('h1 should contain correct text', () => {
     const element = cy.get("h1");
 
-    element.contains(/todoooooo/i);
+    element.contains(/todo/i);
   });
 
   it('should create new todo', () => {
