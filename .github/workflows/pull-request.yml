@@ -44,18 +44,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
         with:
-          node-version: 18.x
-      - name: Install dependencies
-         run: npm ci
-      - name: Start local server
-         run: npm start &
-         background: true
-      - name: Wait for server to start
-         run: npx wait-on http://localhost:3000
-      - name: Run cypress tests
-         run: npx cypress run
-      - name: Stop local server
-         run: kill $(lsof -t -i:3000) || true
+          build: npm run build
+          start: npm start
+          browser: chrome
