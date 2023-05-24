@@ -23,7 +23,7 @@ jobs:
       - name: install dependencies
         run: npm ci
       - name: run linter
-        run: npx eslint . --ext .js,.jsx
+        run: npm run lint
       - name: build app
         run: npm run build
         env:
