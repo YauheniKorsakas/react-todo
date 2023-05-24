@@ -9,11 +9,7 @@ const loadedTodos = repository.load(TodoKey)?.todos;
 const initialState = loadedTodos ||
 {
   filter: Filters.All,
-  todoItems: [
-    { id: 1, content: 'Check phone', isCompleted: true },
-    { id: 2, content: 'Verify credentials', isCompleted: false },
-    { id: 3, content: 'Check email', isCompleted: false }
-  ]
+  todoItems: []
 }
 
 const todosSlice = createSlice({
