@@ -22,7 +22,11 @@
       "global": {
         "lines": 80
       }
-    }
+    },
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/index.js"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
