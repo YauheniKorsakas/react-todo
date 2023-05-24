@@ -44,7 +44,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
       - name: Setup node
         uses: actions/setup-node@v3
         with:
@@ -56,9 +55,7 @@ jobs:
          background: true
       - name: Wait for server to start
          run: npx wait-on http://localhost:3000
-
       - name: Run cypress tests
          run: npx cypress run
-
       - name: Stop local server
          run: kill $(lsof -t -i:3000) || true
