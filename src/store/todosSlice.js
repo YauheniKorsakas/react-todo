@@ -45,6 +45,10 @@ const todosSlice = createSlice({
     reorderTodos: (state, { payload }) => {
       let { dragIndex, dropIndex, todos } = payload;
 
+      if (!Number.isInteger(dragIndex) || !Number.isInteger(dropIndex) || !todos) {
+        return;
+      }
+
       if (state.filter !== Filters.All) {
         dragIndex = todos.findIndex(
           item => item.id === state.todoItems[dragIndex].id
