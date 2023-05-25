@@ -3,6 +3,8 @@
 .TodoList {
   max-height: 50vh;
   overflow-x: hidden;
+  border-top-left-radius: $container-border-radius;
+  border-top-right-radius: $container-border-radius;
 }
 
 .NoContent {

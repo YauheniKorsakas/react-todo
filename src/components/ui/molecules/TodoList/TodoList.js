@@ -6,9 +6,13 @@ import {
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
-import TodoTile from '../TodoTile/TodoTile';
+import {
+  removeTodo,
+  reorderTodos,
+  toggleTodo
+} from '../../../../store/todosSlice';
 import styles from './TodoList.module.scss';
-import { removeTodo, reorderTodos, toggleTodo } from '../../../../store/todosSlice';
+import TodoTile from '../TodoTile/TodoTile';
 
 const TodoList = ({ todos }) => {
   const todosExist = useMemo(() => todos && todos.length > 0, [todos]);

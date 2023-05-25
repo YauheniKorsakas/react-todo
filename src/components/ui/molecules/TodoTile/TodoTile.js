@@ -11,6 +11,7 @@ const TodoTile = ({className = '', id, value, onAddTodo, onRemoveTodo, onToggleT
   const textInputClasses = classNames(styles.Input, { [styles.CrossedInput]: checked });
   const closeButtonClasses = classNames(styles.CloseButton, { [styles.Hidden]: !initialValue });
   const checkboxDisabled = !initialValue ? true : false;
+  const hasInitialValue = !!initialValue;
   
   return (<>
     <div id={id} className={classNames(styles.TodoTile, className)}>
@@ -20,13 +21,16 @@ const TodoTile = ({className = '', id, value, onAddTodo, onRemoveTodo, onToggleT
         checked={checked}
         disabled={checkboxDisabled}
         onChange={onToggleTodo} />
-      <TextInput
-        {...props}
-        className={textInputClasses}
-        onKeyDown={onAddTodo}
-        value={value}
-        type='text'
-        spellCheck='false' />
+      {hasInitialValue
+        ? <span className={styles.InitialValueContainer}>{initialValue}</span>
+        : <TextInput
+            {...props}
+            className={textInputClasses}
+            onKeyDown={onAddTodo}
+            value={value}
+            type='text'
+            spellCheck='false' />
+      }
       <Button
         className={closeButtonClasses}
         title={<AiOutlineClose className={styles.CloseIcon} />}
