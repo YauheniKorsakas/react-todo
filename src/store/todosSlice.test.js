@@ -174,6 +174,32 @@ describe('todosSlice:', () => {
     expect(store.getState().todoItems).toEqual(expectedTodos);
   });
 
+  test('reorderTodos action should not reorder todos when got incorrect data', () => {
+    const store = configureStore({
+      reducer: todoReducer,
+      preloadedState: {
+        filter: Filters.Active,
+        todoItems: [
+          { id: 1, content: 'some content', isCompleted: false },
+          { id: 2, content: 'some content', isCompleted: false }
+        ]
+      }
+    });
+    const payload = {
+      dragIndex: 0,
+      dropIndex: null,
+      todos: store.getState().todoItems
+    };
+
+    store.dispatch(reorderTodos(payload));
+    
+    const expectedTodos = [
+      { id: 1, content: 'some content', isCompleted: false },
+      { id: 2, content: 'some content', isCompleted: false }
+    ];
+    expect(store.getState().todoItems).toEqual(expectedTodos);
+  });
+
   test('selectTodosCountByFilter selector should return length items for All filter', () => {
     const store = configureStore({
       reducer: todoReducer,

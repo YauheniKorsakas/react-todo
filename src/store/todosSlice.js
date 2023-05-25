@@ -45,7 +45,7 @@ const todosSlice = createSlice({
     reorderTodos: (state, { payload }) => {
       let { dragIndex, dropIndex, todos } = payload;
 
-      if (isNaN(dragIndex) || isNaN(dropIndex) || !todos) {
+      if (!Number.isInteger(dragIndex) || !Number.isInteger(dropIndex) || !todos) {
         return;
       }
 
