@@ -6,8 +6,7 @@
   justify-content: flex-start;
   padding: 15px;
   background-color: $secondary-color-100;
-  border: 1px solid $secondary-color-150;
-  border-radius: 5px;
+  border-bottom: 1px solid $secondary-color-150;
 
   .Checkbox {
     width: 50px;
@@ -17,22 +16,34 @@
     }
   }
 
+  .ValueContainer {
+    margin-left: 5px;
+    border: none;
+    overflow: hidden;
+    width: 100%;
+  }
+
   .Input {
     &[type='text'] {
-      margin-left: 5px;
-      border: none;
-      overflow: hidden;
-      width: 100%;
-  
+      @extend .ValueContainer;
+
       &:focus {
         outline: none;
       }
-      
+
       &:disabled {
         background-color: inherit;
       }
-
     }
+  }
+
+  .InitialValueContainer {
+    @extend .ValueContainer;
+
+    background-color: inherit;
+    align-self: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .CrossedInput {

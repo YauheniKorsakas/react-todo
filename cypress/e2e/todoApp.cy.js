@@ -3,9 +3,10 @@ describe('todo app page', () => {
   const todoContent = 'NewTodoContent';
   const firstTodoContent = `${todoContent}1`;
   const secondTodoContent = `${todoContent}2`;
+  const todoInputSelector = 'input:not([disabled])[type="text"]';
 
   const createNewTodo = (content = todoContent) => {
-    let inputForTodoContent = cy.get('input:not([disabled])[type="text"]');
+    let inputForTodoContent = cy.get(todoInputSelector);
     inputForTodoContent.type(content);
     inputForTodoContent.type('{enter}');
   };
@@ -24,25 +25,25 @@ describe('todo app page', () => {
 
   it('should create new todo', () => {
     createNewTodo();
-    const inputForTodoContent = cy.get('input:not([disabled])[type="text"]');
+    const inputForTodoContent = cy.get(todoInputSelector);
     inputForTodoContent.should('have.value', '');
 
-    const disabledInputForCreatedTodo = cy.get('input[disabled][type="text"]');
-    disabledInputForCreatedTodo.should('exist');
-    disabledInputForCreatedTodo.should('have.value', todoContent);
+    const containerForCreatedTodo = cy.contains('span', todoContent);
+    containerForCreatedTodo.should('exist');
+    containerForCreatedTodo.should('contain', todoContent);
   });
 
   it('should remove todo', () => {
     createNewTodo();
-    let disabledInputForCreatedTodo = cy.get('input[disabled][type="text"]');
-    disabledInputForCreatedTodo.should('exist');
-    disabledInputForCreatedTodo.should('have.value', todoContent);
+    let createdTodoContainer = cy.contains('span', todoContent);
+    createdTodoContainer.should('exist');
+    createdTodoContainer.should('contain', todoContent);
 
-    const deleteButton = disabledInputForCreatedTodo.next('button');
+    const deleteButton = createdTodoContainer.next('button');
     deleteButton.click();
 
-    disabledInputForCreatedTodo = cy.get('input[disabled][type="text"]');
-    disabledInputForCreatedTodo.should('not.exist');
+    createdTodoContainer = cy.contains('span', todoContent);
+    createdTodoContainer.should('not.exist');
   });
 
   it('should clear completed todos', () => {
@@ -56,8 +57,8 @@ describe('todo app page', () => {
     clearCompletedButton.should('exist');
     clearCompletedButton.click();
 
-    let checkboxForCreatedTodo = cy.get('input:not([disabled])[type="checkbox"]');
-    checkboxForCreatedTodo.should('not.exist');
+    let containerForTodo = cy.contains('span', todoContent);
+    containerForTodo.should('not.exist');
   });
 
   it('should display correct items count and tiles for `All` filter', () => {
@@ -69,8 +70,10 @@ describe('todo app page', () => {
 
     const todoCountContainer = cy.contains('span', /2 items left/i);
     todoCountContainer.should('exist');
-    const inputsForTodos = cy.get('input[disabled][type="text"]');
-    inputsForTodos.should('have.length', 2);
+    const containersForTodos = cy
+      .get('span')
+      .filter(`:contains(${firstTodoContent}), :contains(${secondTodoContent})`);
+    containersForTodos.should('have.length', 2);
   });
 
   it('should display correct items count and tiles for `Active` filter', () => {
@@ -82,8 +85,10 @@ describe('todo app page', () => {
 
     const todoCountContainer = cy.contains('span', /2 items left/i);
     todoCountContainer.should('exist');
-    const inputsForTodos = cy.get('input[disabled][type="text"]');
-    inputsForTodos.should('have.length', 2);
+    const containersForTodos = cy
+      .get('span')
+      .filter(`:contains(${firstTodoContent}), :contains(${secondTodoContent})`);
+    containersForTodos.should('have.length', 2);
   });
 
   it('should display correct items count and tiles on `Completed` filter', () => {
@@ -104,7 +109,9 @@ describe('todo app page', () => {
 
     const todoCountContainer = cy.contains('span', /1 items left/i);
     todoCountContainer.should('exist');
-    const inputsForTodos = cy.get('input[disabled][type="text"]');
-    inputsForTodos.should('have.length', 1);
+    const containersForTodos = cy
+      .get('span')
+      .filter(`:contains(${firstTodoContent}), :contains(${secondTodoContent})`);
+    containersForTodos.should('have.length', 1);
   });
 })
