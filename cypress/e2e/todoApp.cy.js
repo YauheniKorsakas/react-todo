@@ -13,8 +13,7 @@ describe('todo app page', () => {
 
   beforeEach(() => {
     localStorage.clear();
-    const url = 'http://localhost:3000';
-    cy.visit(url);
+    cy.visit('/');
   });
 
   it('h1 should contain correct text', () => {
